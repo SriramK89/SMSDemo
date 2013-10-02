@@ -1,0 +1,30 @@
+<h1>Compose new sms</h1>
+
+<%= form_for(@sm) do |f| %>
+  <% if @sm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sm.errors.count, "error") %> prohibited this sm from being saved:</h2>
+
+      <ul>
+      <% @sm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :number %><br />
+    Please give the number in 10 digit format. Only India numbers.<br />
+    <%= f.number_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_area :message %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Send" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', sms_path %>
